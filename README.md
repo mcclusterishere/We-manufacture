@@ -1,40 +1,37 @@
-# WE Manufacturing
+# WE Manufacture
 
-Public-facing site-selection and manufacturing project hub for WE.
+Public site for the WE 125 — a city motorcycle assembled in America, connected from the harness.
 
-## Purpose
+This repo is a satellite of McCluster Control. Auth, inbox, CRM, and the operator desk live on the plane. This site renders the product and files the list.
 
-This site gives municipalities, economic-development organizations, utilities, property owners, workforce partners, and state agencies one source of truth for WE's Phase 1 U.S. assembly project.
+## Plane
 
-Current planning assumptions:
+| Piece | Canonical |
+| --- | --- |
+| Control repo | `mcclusterishere/mccluster` |
+| API | `https://api.mccluster.org` |
+| Tenant | `we-manufacture` |
+| App | `we-manufacture-web` |
+| Data | Supabase `zmnhbrjyhxzhkxmhkexs` |
+| Operator desk | [matthew.mccluster.org/we-manufacture.html](https://matthew.mccluster.org/we-manufacture.html) |
 
-- Pre-production connected small-mobility company
-- Approximately 125cc-class street motorcycle platform
-- Embedded telematics, software, and connected ownership/fleet capabilities
-- Approximately 10–15 initial Phase 1 jobs
-- Existing 10,000–20,000 sq. ft. industrial/manufacturing building preferred
-- Preliminary $1M–$3M total project envelope, subject to technical and financing validation
-- Connecticut and Georgia currently under evaluation
+Public forms POST to `/api/inquiries` and `/api/site-selection`, which forward to `POST /v1/inquiries` with `org=we-manufacture`. Do not add a second database.
 
 ## Stack
 
 - Next.js 16 / React 19
 - TypeScript
-- Supabase intake storage
+- Tailwind v4
 - GitHub Actions CI
-- Intended deployment: Vercel
+- Intended deployment: Vercel, then a McCluster host
 
-## Site-selection intake
+## Pages
 
-The public form submits to `/api/site-selection`, which validates the payload and writes into `public.we_site_submissions` in the existing McCluster Supabase project.
-
-Security model:
-
-- Row Level Security enabled
-- `anon` / `authenticated` roles have INSERT only
-- No public SELECT, UPDATE, or DELETE access
-- Server route performs field validation and normalization
-- Honeypot field blocks basic automated spam
+- `/` — the bike
+- `/platform` — the 125
+- `/build` — the line
+- `/interest` — the list
+- `/site` — municipal / site-selection package
 
 ## Development
 
@@ -52,18 +49,7 @@ npm run typecheck
 npm run build
 ```
 
-## Environment variables
-
-The deployment may set:
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
-```
-
-The current route includes the project's public Supabase URL and publishable key as deployment-safe fallbacks. Never add a Supabase service-role key to this repository or expose one to the browser.
-
-## Project contact
+## Contact
 
 Matthew McCluster  
 matthew@mccluster.org
