@@ -56,6 +56,12 @@ The supplied kit in this repo:
 
 If you find a hand-drawn `we-icon.svg` of five rectangles: delete it, do not reference it.
 
+## Deployment law
+
+- **Never deploy this project to Vercel.** Whip Equipped web properties use Cloudflare.
+- `whipequipped.com` is the canonical public domain for this site.
+- Preserve existing email DNS while changing web DNS. Do not alter MX, SPF, DKIM, or DMARC records as part of a web deployment.
+
 ## Local product law
 
 - This is the public WE 125 / WE Manufacture site: product, line, list, and municipal site-selection.
