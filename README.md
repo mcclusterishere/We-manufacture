@@ -23,7 +23,7 @@ Public forms POST to `/api/inquiries` and `/api/site-selection`, which forward t
 - TypeScript
 - Tailwind v4
 - GitHub Actions CI
-- Intended deployment: Vercel, then a McCluster host
+- Deployment: Cloudflare only. Do not use Vercel for this project.
 
 ## Pages
 
