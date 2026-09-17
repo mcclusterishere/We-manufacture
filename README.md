@@ -1,6 +1,6 @@
 # WE Manufacture
 
-Public site for the WE 125 — a city motorcycle assembled in America, connected from the harness.
+Public site for Whip Equipped: the WE 125 vehicle, connected mobility systems, autonomy research, fleet operations, and the U.S. manufacturing path.
 
 This repo is a satellite of McCluster Control. Auth, inbox, CRM, and the operator desk live on the plane. This site renders the product and files the list.
 
@@ -52,4 +52,4 @@ npm run build
 ## Contact
 
 Matthew McCluster  
-matthew@mccluster.org
+matthew@whipequipped.com
