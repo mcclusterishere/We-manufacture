@@ -3,16 +3,17 @@ import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://whipequipped.com"),
   title: {
-    default: "WE Manufacture",
-    template: "%s · WE Manufacture",
+    default: "Whip Equipped",
+    template: "%s · Whip Equipped",
   },
   description:
-    "WE 125. A city motorcycle assembled in America. Connected from day one. Get on the list.",
+    "Connected mobility, vehicle intelligence, human-autonomy systems, fleet operations, and a path to U.S. motorcycle assembly.",
   openGraph: {
-    title: "WE Manufacture",
+    title: "Whip Equipped",
     description:
-      "WE 125. A city motorcycle assembled in America. Connected from day one.",
+      "A connected mobility platform spanning the vehicle, sensing, secure communications, fleet operations, autonomy research, and manufacturing.",
     type: "website",
     images: [{ url: "/og.jpg", width: 1200, height: 630 }],
   },
