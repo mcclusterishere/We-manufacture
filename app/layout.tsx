@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
+import { AuthProvider } from "@/components/auth-provider";
 import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "WE Manufacture",
-    template: "%s · WE Manufacture",
+    default: "WE",
+    template: "%s · WE",
   },
-  description:
-    "WE 125. A city motorcycle assembled in America. Connected from day one. Get on the list.",
-  openGraph: {
-    title: "WE Manufacture",
-    description:
-      "WE 125. A city motorcycle assembled in America. Connected from day one.",
-    type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
-  },
+  description: "WE 125 and the Whip Equipped mobility platform.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/brand/we-icon.png",
     apple: "/brand/we-icon.png",
   },
 };
@@ -34,7 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="bg-bg text-fg">
-        <SiteShell>{children}</SiteShell>
+        <AuthProvider>
+          <SiteShell>{children}</SiteShell>
+        </AuthProvider>
       </body>
     </html>
   );
