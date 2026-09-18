@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
 import { Destinations } from "@/components/destinations";
 import { InquiryForm } from "@/components/inquiry-form";
-import { lanes, shots, type LaneId } from "@/lib/site";
+import { shots } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Get on the list" };
 
-type Props = { searchParams: Promise<{ lane?: string }> };
-
-export default async function InterestPage({ searchParams }: Props) {
-  const query = await searchParams;
-  const match = lanes.find((item) => item.id === query.lane);
-  const lane = (match?.id ?? "rider") as LaneId;
-
+export default function InterestPage() {
   return (
     <main className="relative overflow-hidden">
       <img
@@ -27,7 +21,7 @@ export default async function InterestPage({ searchParams }: Props) {
             Rider, fleet, shop, supplier, town, club. Pick a lane and write something real. This is not an order form.
           </p>
           <div className="mt-10">
-            <InquiryForm defaultLane={lane} />
+            <InquiryForm />
           </div>
         </div>
         <aside className="lg:pt-28">

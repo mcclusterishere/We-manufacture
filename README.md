@@ -1,6 +1,8 @@
 # WE Manufacture
 
-Public site for the WE 125 — a city motorcycle assembled in America, connected from the harness.
+Public site: **https://mcclusterishere.github.io/We-manufacture/**
+
+WE 125 — a city motorcycle assembled in America, connected from the harness.
 
 This repo is a satellite of McCluster Control. Auth, inbox, CRM, and the operator desk live on the plane. This site renders the product and files the list.
 
@@ -14,16 +16,16 @@ This repo is a satellite of McCluster Control. Auth, inbox, CRM, and the operato
 | App | `we-manufacture-web` |
 | Data | Supabase `zmnhbrjyhxzhkxmhkexs` |
 | Operator desk | [matthew.mccluster.org/we-manufacture.html](https://matthew.mccluster.org/we-manufacture.html) |
+| Public preview | [mcclusterishere.github.io/We-manufacture](https://mcclusterishere.github.io/We-manufacture/) |
 
-Public forms POST to `/api/inquiries` and `/api/site-selection`, which forward to `POST /v1/inquiries` with `org=we-manufacture`. Do not add a second database.
+Public forms POST to `https://api.mccluster.org/v1/inquiries` with `org=we-manufacture`. Do not add a second database.
 
 ## Stack
 
 - Next.js 16 / React 19
 - TypeScript
 - Tailwind v4
-- GitHub Actions CI
-- Intended deployment: Vercel, then a McCluster host
+- GitHub Actions CI + GitHub Pages preview from `main`
 
 ## Pages
 

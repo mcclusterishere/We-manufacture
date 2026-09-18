@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/site";
 
 type Props = {
   compact?: boolean;
@@ -15,7 +16,7 @@ export function WeLockup({ compact = false, className }: Props) {
       data-cursor="Home"
     >
       <img
-        src="/brand/we-icon.png"
+        src={asset("/brand/we-icon.png")}
         alt=""
         className="size-9 shrink-0 outline-none sm:size-10"
       />

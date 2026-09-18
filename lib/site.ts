@@ -142,7 +142,14 @@ export function laneById(id: string) {
   return lanes.find((lane) => lane.id === id) ?? lanes[0];
 }
 
-const WE125 = "/media/we-125";
+const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+export function asset(path: string) {
+  if (!path.startsWith("/")) return path;
+  return `${assetBase}${path}`;
+}
+
+const WE125 = asset("/media/we-125");
 
 export const shots = {
   curbside: `${WE125}/we-125-front-three-quarter-curbside.png`,

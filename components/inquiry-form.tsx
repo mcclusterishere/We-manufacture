@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { brand, laneById, lanes, type LaneId } from "@/lib/site";
+import { postInquiry } from "@/lib/plane";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,6 +22,12 @@ export function InquiryForm({ defaultLane = "rider" }: Props) {
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState<string | null>(null);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("lane");
+    if (id && lanes.some((item) => item.id === id)) setLane(id as LaneId);
+  }, []);
+
   const selected = useMemo(() => laneById(lane), [lane]);
 
   async function onSubmit(event: FormEvent) {
@@ -36,8 +43,12 @@ export function InquiryForm({ defaultLane = "rider" }: Props) {
     }
     setBusy(true);
     try {
-      const form = event.currentTarget;
+      const form = event.currentTarget as HTMLFormElement;
       const trap = form.querySelector<HTMLInputElement>("#website");
+      if (trap?.value) {
+        setSaved("received");
+        return;
+      }
       const note = [
         org.trim() ? `Organization: ${org.trim()}` : null,
         city.trim() ? `City / region: ${city.trim()}` : null,
@@ -48,22 +59,15 @@ export function InquiryForm({ defaultLane = "rider" }: Props) {
         .filter((line) => line !== null)
         .join("\n");
 
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          want: selected.subject,
-          note,
-          page: "/interest",
-          source: `we-manufacture-${lane}`,
-          website: trap?.value || "",
-        }),
+      const result = await postInquiry({
+        name: name.trim(),
+        email: email.trim(),
+        want: selected.subject,
+        note,
+        page: "/interest",
+        source: `we-manufacture-${lane}`,
       });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error || "The desk did not take this.");
-      setSaved(typeof result.id === "string" ? result.id : "received");
+      setSaved(typeof result.inquiry?.id === "string" ? result.inquiry.id : "received");
     } catch (err) {
       setError(err instanceof Error ? err.message : "We could not file this. Try again.");
     } finally {

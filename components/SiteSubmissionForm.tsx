@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { postInquiry } from "@/lib/plane";
 
 type FormStatus = { type: "idle" | "success" | "error"; message: string };
 
@@ -49,6 +50,15 @@ function Area({
   );
 }
 
+function text(value: FormDataEntryValue | null, max = 4000) {
+  if (typeof value !== "string") return "";
+  return value.trim().slice(0, max);
+}
+
+function line(label: string, value: string) {
+  return value ? `${label}: ${value}` : null;
+}
+
 export default function SiteSubmissionForm() {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>({ type: "idle", message: "" });
@@ -59,16 +69,77 @@ export default function SiteSubmissionForm() {
     setStatus({ type: "idle", message: "" });
 
     const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
 
     try {
-      const response = await fetch("/api/site-selection", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      if (text(data.get("website"), 200)) {
+        form.reset();
+        setStatus({
+          type: "success",
+          message: "Received. The package is on the McCluster desk for the Phase 1 shortlist.",
+        });
+        return;
+      }
+
+      const organization = text(data.get("organization_name"), 200);
+      const municipality = text(data.get("municipality"), 120);
+      const state = text(data.get("state"), 80);
+      const contact = text(data.get("contact_name"), 160);
+      const email = text(data.get("email"), 320);
+
+      if (!organization || !municipality || !state || !contact || !email) {
+        throw new Error("Please complete all required fields.");
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        throw new Error("Please provide a valid email address.");
+      }
+
+      const note = [
+        line("Organization", organization),
+        line("Municipality", municipality),
+        line("State", state),
+        line("Contact", contact),
+        line("Title", text(data.get("title"), 160)),
+        line("Phone", text(data.get("phone"), 80)),
+        "",
+        "Facility",
+        line("Address", text(data.get("building_address"), 500)),
+        line("Owner", text(data.get("building_owner"), 300)),
+        line("Sq ft", text(String(data.get("building_sqft") ?? ""), 40)),
+        line("Rent / occupancy", text(data.get("asking_rent"), 1000)),
+        line("Earliest occupancy", text(data.get("earliest_occupancy"), 300)),
+        line("Zoning", text(data.get("zoning"), 600)),
+        line("Power", text(data.get("power_capacity"), 600)),
+        line("Loading", text(data.get("loading_access"), 600)),
+        "",
+        "Incentives",
+        line("Local", text(data.get("local_incentives"))),
+        line("State", text(data.get("state_incentives"))),
+        line("Equipment", text(data.get("equipment_support"))),
+        line("Workforce", text(data.get("workforce_support"))),
+        line("Utility", text(data.get("utility_support"))),
+        line("Tax / PILOT", text(data.get("tax_relief"))),
+        "",
+        "Conditions",
+        line("Jobs", text(data.get("job_requirements"))),
+        line("Wages", text(data.get("wage_requirements"))),
+        line("Match / capex", text(data.get("match_requirements"))),
+        line("Guarantees", text(data.get("guarantee_requirements"))),
+        line("Clawbacks", text(data.get("clawbacks"))),
+        line("Notes", text(data.get("notes"), 8000)),
+      ]
+        .filter((item) => item !== null)
+        .join("\n")
+        .slice(0, 4000);
+
+      await postInquiry({
+        name: contact,
+        email,
+        want: "WE 125 site",
+        note,
+        page: "/site",
+        source: "we-manufacture-site",
       });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Submission failed.");
       form.reset();
       setStatus({
         type: "success",
