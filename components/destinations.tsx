@@ -18,20 +18,14 @@ export function Destinations({ current }: Props) {
       aria-label="Go"
       className={cn("grid sm:grid-cols-2", items.length > 2 && "lg:grid-cols-3")}
     >
-      {items.map((item, i) => (
-        <Tile key={item.to} item={item} index={i} />
+      {items.map((item) => (
+        <Tile key={item.to} item={item} />
       ))}
     </nav>
   );
 }
 
-function Tile({
-  item,
-  index,
-}: {
-  item: (typeof nav)[number];
-  index: number;
-}) {
+function Tile({ item }: { item: (typeof nav)[number] }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -55,13 +49,7 @@ function Tile({
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      style={{ perspective: 1200 }}
-    >
+    <div style={{ perspective: 1200 }}>
       <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
         <Link
           ref={ref}
@@ -89,6 +77,6 @@ function Tile({
           </span>
         </Link>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

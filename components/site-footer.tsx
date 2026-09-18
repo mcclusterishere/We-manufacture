@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { brand, claims } from "@/lib/site";
 
 export function SiteFooter() {
@@ -12,9 +13,9 @@ export function SiteFooter() {
         </div>
         <p className="max-w-xl text-kicker leading-relaxed text-muted">
           {claims.slice(0, 4).join(" ")} {new Date().getFullYear()} {brand.parent}.{" "}
-          <a href="/site" className="text-orange no-underline">
+          <Link href="/site" className="text-orange no-underline">
             Submit a site
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

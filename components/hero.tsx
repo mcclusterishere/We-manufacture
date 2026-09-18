@@ -46,7 +46,7 @@ export function Hero() {
         alt="WE 125"
         className="absolute inset-[-6%] size-[112%] max-w-none object-cover object-[center_58%] will-change-transform"
         style={{ x, y }}
-        initial={{ scale: 1.12 }}
+        initial={false}
         animate={{ scale: 1.04 }}
         transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
       />
@@ -60,28 +60,19 @@ export function Hero() {
         <div className="mx-auto flex max-w-7xl items-end justify-between gap-6 px-4 pb-8 sm:px-6 sm:pb-10">
           <h1 className="flex font-display text-4xl font-bold tracking-tight sm:text-5xl">
             {title.map((char, i) => (
-              <motion.span
+              <span
                 key={`${char}-${i}`}
                 className={char === " " ? "w-3 sm:w-4" : "inline-block"}
-                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, delay: 0.12 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               >
                 {char === " " ? "\u00a0" : char}
-              </motion.span>
+              </span>
             ))}
           </h1>
-          <motion.div
-            initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Button asChild size="lg" className="btn-shine">
-              <Link href="/interest" data-cursor="Join">
-                Get on the list
-              </Link>
-            </Button>
-          </motion.div>
+          <Button asChild size="lg" className="btn-shine">
+            <Link href="/interest" data-cursor="Join">
+              Get on the list
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
