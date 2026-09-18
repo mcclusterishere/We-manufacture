@@ -85,7 +85,7 @@ export function InquiryForm({ defaultLane = "rider" }: Props) {
         </div>
         <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">You are on the list.</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted">
-          It landed on the McCluster desk. Matthew will see it there. Not an order. Not a deposit.
+          It landed on our desk. Matthew will see it. Not an order. Not a deposit.
         </p>
         <Button variant="ghost" type="button" className="mt-5" onClick={() => setSaved(null)}>
           File another
@@ -157,7 +157,7 @@ export function InquiryForm({ defaultLane = "rider" }: Props) {
         {busy ? "Filing…" : "Get on the list"}
       </Button>
       <p className="text-kicker leading-relaxed text-muted">
-        Goes to the McCluster desk, then to {brand.email}. No deposits. No orders. No fake inventory.
+        Lands on our desk, then to {brand.email}. No deposits. No orders. No fake inventory.
       </p>
     </form>
   );

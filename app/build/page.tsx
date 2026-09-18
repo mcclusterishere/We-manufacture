@@ -35,7 +35,9 @@ export default function BuildPage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-bg/40" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl px-4 py-10 sm:px-6">
-          <h1 className="max-w-3xl font-display text-display font-extrabold leading-[0.9]">Build</h1>
+          <p className="text-kicker font-semibold tracking-[0.2em] text-orange uppercase">The line</p>
+          <h1 className="mt-2 max-w-3xl font-display text-display font-extrabold leading-[0.9]">Build</h1>
+          <p className="mt-3 max-w-xl text-lg text-fg/80">A line in America. We have not started it.</p>
         </div>
       </section>
 

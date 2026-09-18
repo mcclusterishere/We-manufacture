@@ -8,7 +8,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-dvh flex-col bg-bg text-fg">
       <SiteFx />
       <SiteHeader />
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 pt-16 sm:pt-20">{children}</div>
       <SiteFooter />
     </div>
   );

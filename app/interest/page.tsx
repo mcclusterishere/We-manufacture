@@ -3,7 +3,7 @@ import { Destinations } from "@/components/destinations";
 import { InquiryForm } from "@/components/inquiry-form";
 import { shots } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Get on the list" };
+export const metadata: Metadata = { title: "The list" };
 
 export default function InterestPage() {
   return (
@@ -26,10 +26,10 @@ export default function InterestPage() {
         </div>
         <aside className="lg:pt-28">
           <div className="rounded-xl bg-elevated p-7 hairline">
-            <p className="text-kicker font-semibold tracking-[0.16em] text-muted uppercase">The desk</p>
-            <h2 className="mt-2 font-display text-2xl font-semibold">Where it goes</h2>
+            <p className="text-kicker font-semibold tracking-[0.16em] text-muted uppercase">What happens</p>
+            <h2 className="mt-2 font-display text-2xl font-semibold">It lands on our desk.</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Every note lands in McCluster Control: inbox, CRM, and Matthew’s email. You control it from the plane. This page does not keep a second copy.
+              Matthew reads it. You hear back from us. No deposit. No fake inventory. No second copy sitting on this page.
             </p>
           </div>
         </aside>

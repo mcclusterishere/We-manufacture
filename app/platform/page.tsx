@@ -28,7 +28,9 @@ export default function PlatformPage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-bg/30" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl px-4 py-10 sm:px-6">
-          <h1 className="max-w-3xl font-display text-display font-extrabold leading-[0.9]">The 125</h1>
+          <p className="text-kicker font-semibold tracking-[0.2em] text-orange uppercase">The bike</p>
+          <h1 className="mt-2 max-w-3xl font-display text-display font-extrabold leading-[0.9]">The 125</h1>
+          <p className="mt-3 max-w-xl text-lg text-fg/80">Honda Grom is the class. WE is our take on it.</p>
         </div>
       </section>
 

@@ -2,7 +2,7 @@
 
 import { useRef, type MouseEvent } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { nav, shots } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +26,7 @@ export function Destinations({ current }: Props) {
 }
 
 function Tile({ item }: { item: (typeof nav)[number] }) {
+  const reduce = useReducedMotion();
   const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -37,6 +38,7 @@ function Tile({ item }: { item: (typeof nav)[number] }) {
   const iy = useTransform(ry, [-0.5, 0.5], [-12, 12]);
 
   function onMove(event: MouseEvent<HTMLAnchorElement>) {
+    if (reduce) return;
     const box = ref.current?.getBoundingClientRect();
     if (!box) return;
     mx.set((event.clientX - box.left) / box.width - 0.5);
@@ -50,7 +52,7 @@ function Tile({ item }: { item: (typeof nav)[number] }) {
 
   return (
     <div style={{ perspective: 1200 }}>
-      <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
+      <motion.div style={reduce ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }}>
         <Link
           ref={ref}
           href={item.to}
@@ -63,9 +65,9 @@ function Tile({ item }: { item: (typeof nav)[number] }) {
             src={shots[item.shot]}
             alt=""
             className="absolute inset-[-8%] size-[116%] max-w-none object-cover will-change-transform"
-            style={{ x: ix, y: iy }}
+            style={reduce ? undefined : { x: ix, y: iy }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/15 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
           <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-orange transition-transform duration-500 ease-out group-hover:scale-x-100" />
           <span className="absolute bottom-0 left-0 p-6 sm:p-8">
             <span className="block text-kicker font-semibold tracking-[0.18em] text-orange uppercase">
