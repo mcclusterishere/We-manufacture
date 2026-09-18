@@ -6,7 +6,7 @@ import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/rea
 import { Button } from "@/components/ui/button";
 import { shots } from "@/lib/site";
 
-const title = ["W", "E", " ", "1", "2", "5"];
+const title = "WHIP EQUIPPED".split("");
 
 export function Hero() {
   const frame = useRef<HTMLElement>(null);
@@ -43,7 +43,7 @@ export function Hero() {
     >
       <motion.img
         src={shots.curbside}
-        alt="WE 125"
+        alt="Whip Equipped connected mobility platform"
         className="absolute inset-[-6%] size-[112%] max-w-none object-cover object-[center_58%] will-change-transform"
         style={{ x, y }}
         initial={{ scale: 1.12 }}

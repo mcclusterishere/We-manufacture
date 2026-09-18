@@ -1,19 +1,20 @@
-export const APP_NAME = "WE Manufacture";
+export const APP_NAME = "Whip Equipped";
 
 export const brand = {
-  name: "WE Manufacture",
-  parent: "Whip Equipped",
-  tagline: "In this together",
-  email: "matthew@mccluster.org",
+  name: "Whip Equipped",
+  parent: "WE Manufacture",
+  tagline: "Ride. Sense. Connect.",
+  email: "matthew@whipequipped.com",
   founder: "Matthew McCluster",
   hq: "Connecticut",
   assembly: "Georgia. Site not chosen.",
 };
 
 export const nav = [
-  { to: "/platform" as const, label: "The 125", line: "The bike", shot: "urban" as const },
-  { to: "/build" as const, label: "Build", line: "The line", shot: "fleet" as const },
-  { to: "/interest" as const, label: "The list", line: "Get on it", shot: "front" as const },
+  { to: "/platform" as const, label: "WE 125", line: "The vehicle", shot: "urban" as const },
+  { to: "/systems" as const, label: "WE Systems", line: "Autonomy + intelligence", shot: "profile" as const },
+  { to: "/build" as const, label: "Manufacture", line: "The line", shot: "fleet" as const },
+  { to: "/interest" as const, label: "Join", line: "Riders + fleets + partners", shot: "front" as const },
 ];
 
 export const stats = [
@@ -78,10 +79,39 @@ export const phases = [
 ] as const;
 
 export const stack = [
-  { title: "The bike", body: "A 125 you throw a leg over. City range. Built to be ridden." },
-  { title: "The radio", body: "Where it is. If it should be moving. Designed into the harness." },
-  { title: "The people", body: "Riders, fleets, clubs. Direct. Dealers later, on purpose." },
-  { title: "The line", body: "Final assembly in America. A floor we have not opened yet." },
+  { title: "Ride", body: "A mechanically mature small-displacement vehicle platform designed to be ridden, serviced, and scaled." },
+  { title: "Sense", body: "Vehicle, rider, and environment data through modular sensing and edge electronics." },
+  { title: "Connect", body: "GNSS, cellular, fleet telemetry, secure device identity, and resilient communications designed into the platform." },
+  { title: "Autonomy", body: "A research path for human-autonomy teaming, cooperating aerial systems, shared perception, and semantic control." },
+  { title: "Operate", body: "Fleet tools, maintenance intelligence, geofencing, asset state, and a common software plane." },
+  { title: "Build", body: "Prototype-to-production discipline with a path toward low-volume U.S. final assembly." },
+] as const;
+
+export const systemLayers = [
+  {
+    title: "Vehicle edge",
+    body: "Power, compute, identity, telemetry, and modular interfaces live with the vehicle instead of being bolted on as an afterthought.",
+  },
+  {
+    title: "Rider interface",
+    body: "Low-distraction controls and information delivery for navigation, vehicle state, remote sensing, and future shared-autonomy functions.",
+  },
+  {
+    title: "Cooperating systems",
+    body: "Research architecture for a vehicle operator to supervise external autonomous sensors such as UAS without low-level manual piloting.",
+  },
+  {
+    title: "Fleet plane",
+    body: "A common operational layer for location, health, maintenance, permissions, events, and future commercial fleet workflows.",
+  },
+  {
+    title: "Secure state",
+    body: "Authenticated devices, command freshness, anti-replay controls, confidence states, and graceful degradation when links become unreliable.",
+  },
+  {
+    title: "Manufacturing system",
+    body: "P0 engineering mule to P1 WE prototype to P2 production-intent golden sample, then documented repeatable assembly.",
+  },
 ] as const;
 
 export const specs = [
